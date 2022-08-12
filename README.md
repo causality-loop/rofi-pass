@@ -28,10 +28,14 @@ yay -S rofi pass xdotool xclip
 ./rofi-pass.sh --both
 ```
 - Works like `passmenu --type`, but both username and password will be inputted into the appropriate fields in a web browser (as with the [Qutebrowser script](#description) above)
-- Password store entries should contain the URL minus the `http://` and any other text after `.com` (or `.net`, `.org`, `.me`, etc)
-- Example:
+- Password store file names should be the URL minus the `http://` and any other text after `.com` (or `.net`, `.org`, `.me`, `.io`, etc); example:
   - URL: `https://login.myemail.me/user-login-screen`
   - Password store entry: `login.myemail.me`
+- Password store files should contain the username/email in the first line and the password in the last line; example:
+```
+myusername
+password123
+```
 - To use the script after setting up *Pass*, simply browse to the site and type the script keybinding; the username/email and password should be entered in both fields, respectively
 ### Without flags
 ```
