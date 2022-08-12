@@ -1,46 +1,42 @@
 # rofi-pass
 
 ## Description
-- Works similarly to `passmenu --type`
-- Uses Rofi to enter passwords stored with Pass into your web browser
-- Either a username, password, or both can be inputted via the script
+- Works similarly to the [Qutebrowser Pass script](https://github.com/qutebrowser/qutebrowser/blob/master/misc/userscripts/qute-pass) and `passmenu --type` 
+- Uses *Rofi* to output passwords stored with *Pass*
+- Either a username, password, or both can be inputted via the script (see [Usage](#usage))
+
+## Note
+- Only tested on Arch Linux with Firefox
 
 ## Requirements
+- A non-Vim like browser with the *Vimium* extension installed:
+  - [Vimium-FF Firefox](https://addons.mozilla.org/en-US/firefox/addon/vimium-ff/)
+  - [Vimium Chrome](https://chrome.google.com/webstore/detail/vimium/dbepggeogbaibhgnhhndojpepiihcmeb?hl=en)
 - On Arch Linux, with *yay*:
 ```sh
-yay -S rofi pass xdotool
+yay -S rofi pass xdotool xclip
 ```
 
 ## Usage
+### Setup
 - The script assumes your password store is located at `~/.password-store`
-- Add passwords to the store if not already done
 - Download the script and make it executable
 - Create a keybinding for the script
-- Browse to a site, and click on a username or password entry field (if using a vim-like browser like Qutebrowser, make sure you're in Insert Mode)
-- Run the script via the keybinding
-
-## Important note on formatting
-- The number of lines in the password store file determines the functionality of the script:
-  - If the number of lines is equal to *one*, it's assumed that either a username *or* password is contained in the file
-  - If, however, the number of lines is greater than one, it's assumed that:
-    - The first line of the file is the username
-    - The last line of the file is the password
-- See the following examples:
-
-### Example 1: Discrete credentials
-- Where the bold headers show the file path and the block text indicates the file contents:
-#### `~/.password-store/somesite/user`
+### Usage with the `--both` flag
+- Example:
 ```
-myusername
+./rofi-pass.sh --both
 ```
-#### `~/.password-store/somesite/pass`
+- Works like `passmenu --type`, but both username and password will be inputted into the appropriate fields in a web browser (as with the [Qutebrowser script](#description) above)
+- Password store entries should contain the URL minus the `http://` and any other text after `.com` (or `.net`, `.org`, `.me`, etc)
+- Example:
+  - URL: `https://login.myemail.me/user-login-screen`
+  - Password store entry: `login.myemail.me`
+- To use the script after setting up *Pass*, simply browse to the site and type the script keybinding; the username/email and password should be entered in both fields, respectively
+### Without flags
 ```
-mypassword123 
+./rofi-pass.sh
 ```
-
-### Example 2: Defragmented credentials
-#### `~/.password-store/somesite`
-```
-myusername
-mypassword123 
-```
+- Works like `passmenu --type`
+- Password store entries need not submit to any specific format outside those recommended by the developers of *Pass*
+- To use the script after setting up *Pass*, type the keybinding and select which password store entry you'd like typed out from the *Rofi* menu
