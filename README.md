@@ -1,4 +1,6 @@
-# rofi-pass
+<h3 style="font-size:4vw">rofi-pass</h1> 
+
+<br>
 
 ## Description
 - Works similarly to the [Qutebrowser Pass script](https://github.com/qutebrowser/qutebrowser/blob/master/misc/userscripts/qute-pass) and `passmenu --type` 
@@ -7,12 +9,12 @@
 - Please read the [Notes](#notes) and [Known Issues](#known-issues) sections
 
 ## Requirements
-- A non-Vim like browser with the *Vimium* extension installed:
+- A non-Vim like browser (eg, Firefox, Brave) with the *Vimium* extension installed:
   - [Vimium-FF Firefox](https://addons.mozilla.org/en-US/firefox/addon/vimium-ff/)
   - [Vimium Chrome](https://chrome.google.com/webstore/detail/vimium/dbepggeogbaibhgnhhndojpepiihcmeb?hl=en)
 - On Arch Linux, with *yay*:
 ```sh
-yay -S rofi pass xdotool xclip
+yay -S rofi pass xdotool xclip dunst
 ```
 
 ## Usage
@@ -20,6 +22,7 @@ yay -S rofi pass xdotool xclip
 - The script assumes your password store is located at `~/.password-store`
 - Download the script and make it executable
 - Create a keybinding for the script
+ 
 ### The `--both` flag
 - Example:
 ```
@@ -35,12 +38,13 @@ myusername
 password123
 ```
 - To use the script after setting up *Pass*, simply browse to the site and type the script keybinding; the username/email and password should be entered in both fields, respectively
+ 
 ### Without flags
 ```
 ./rofi-pass.sh
 ```
 - Works like `passmenu --type`
-- Password store entries need not submit to any specific format outside those recommended by the developers of *Pass*
+- Password store entries need not submit to any specific format outside of those indicated by the developers of *Pass*
 - To use the script after setting up *Pass*, type the keybinding and select which password store entry you'd like typed out from the *Rofi* menu
 
 ## Notes
@@ -48,14 +52,10 @@ password123
   - Firefox
   - Librewolf
   - Brave
-- Ensure that the `yy` and `gi` commands in Vimium haven't been changed or unmapped
 
-## Known issues
+## Known issue fixes
+### All browsers
+- Ensure that the `yy` and `gi` commands in Vimium haven't been changed or unmapped
+ 
 ### Brave
-##### Description
-- Using the `--both` flag causes the Brave Task Manager to run instead of producing the intended resultant
-##### Reason
-- A keybinding inherent to Brave (`Shift+Esc`) conflicts with the code on `Line 11` (`xdotool key Escape`)
-##### Fix
-  - Comment the aforementioned line
-  - Rerun the script in Brave, ensuring that neither text field is selected (click on the page outside the text fields)
+- On the login web page, neither text field should show a cursor (if so, click on a part of the page outside the fields to remove focus)
