@@ -1,4 +1,4 @@
-<h3 style="font-size:4vw">rofi-pass</h1> 
+# rofi-pass
 
 <br>
 
