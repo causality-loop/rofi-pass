@@ -9,6 +9,7 @@ if [ "$1" = "--both" ]; then
   sleep 0.1
   # in case the site automatically clicks on the user/email input field
   xdotool key Escape
+  sleep 0.1
   # Vimium binding for URL copy
   xdotool type "yy"
   sleep 0.1
